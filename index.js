@@ -57,6 +57,29 @@ app.delete('/api/persons/:id', (request, response) => {
   response.status(200).end();
 })
 
+const generate_id =()=>{
+  const maxId = agenda.length >0
+        ? Math.max(...agenda.map( item => item.id ))
+        : 1 ;
+  const id = Math.floor(maxId +1 + (1000-maxId)*Math.random());
+  return id
+}
+
+app.post( '/api/persons', (request, response)=>{
+  const body = request.body;
+
+  const person = {
+    name: body.name,
+    number: body.number,
+    id: generate_id()
+  }
+
+  agenda = agenda.concat(person);
+
+  response.json(agenda)
+}) 
+
+
 const PORT = 3001;
 app.listen(PORT, ()=>{
   console.log(`Server running on port ${PORT}`);
