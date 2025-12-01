@@ -50,6 +50,12 @@ app.get('/api/persons/:id', (request, response) => {
 
 })
 
+app.delete('/api/persons/:id', (request, response) => {
+  const id = Number(request.params.id);
+  agenda = agenda.filter( item => item.id !== id );
+
+  response.status(200).end();
+})
 
 const PORT = 3001;
 app.listen(PORT, ()=>{
