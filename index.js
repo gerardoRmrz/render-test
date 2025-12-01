@@ -26,14 +26,9 @@ let agenda = [
   }
 ]
 
-app.get('/info', (request, response) => {
-  const length = agenda.length;
-  const date = new Date();
-  const dateStr = `<br><div>${date.toString()}</div>`
-  response.send(`<div>Phonebook has info for ${length} people</div> ${dateStr}`);
-
+app.get('/api/persons', (request, response) => {
+  response.json( agenda )
 })
-
 
 
 const PORT = 3001;
