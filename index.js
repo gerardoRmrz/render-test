@@ -30,6 +30,13 @@ app.get('/api/persons', (request, response) => {
   response.json( agenda )
 })
 
+app.get('/info', (request, response) => {
+  const length = agenda.length;
+  const date = new Date();
+  const dateStr = `<br><div>${date.toString()}</div>`
+  response.send(`<div>Phonebook has info for ${length} people</div> ${dateStr}`);
+
+})
 
 const PORT = 3001;
 app.listen(PORT, ()=>{
